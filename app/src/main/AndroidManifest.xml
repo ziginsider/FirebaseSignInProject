@@ -27,7 +27,7 @@
 
                 <data
                     android:scheme="http"
-                    android:host="firebasesigninproject.firebase.google.com"
+                    android:host="friendlychat.firebase.google.com"
                     android:pathPattern="/message" />
             </intent-filter>
 

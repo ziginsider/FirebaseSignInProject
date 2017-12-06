@@ -35,6 +35,9 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.appindexing.Action;
+import com.google.firebase.appindexing.FirebaseAppIndex;
+import com.google.firebase.appindexing.FirebaseUserActions;
 import com.google.firebase.appindexing.Indexable;
 import com.google.firebase.appindexing.builders.Indexables;
 import com.google.firebase.appindexing.builders.PersonBuilder;
@@ -208,6 +211,16 @@ public class MainActivity extends AppCompatActivity  implements GoogleApiClient.
                             .load(friendlyMessage.getPhotoUrl())
                             .into(viewHolder.messengerImageView);
                 }
+
+                //app indexing
+                if (friendlyMessage.getText() != null) {
+                    // write this message to the on-device index
+                    FirebaseAppIndex.getInstance()
+                            .update(getMessageIndexable(friendlyMessage));
+                }
+
+                // log a view action on it
+                FirebaseUserActions.getInstance().end(getMessageViewAction(friendlyMessage));
 
             }
         };
@@ -396,6 +409,8 @@ public class MainActivity extends AppCompatActivity  implements GoogleApiClient.
                 });
     }
 
+
+    //app indexing
     private Indexable getMessageIndexable(FriendlyMessage friendlyMessage) {
         PersonBuilder sender = Indexables.personBuilder()
                 .setIsSelf(mUsername.equals(friendlyMessage.getName()))
@@ -414,5 +429,12 @@ public class MainActivity extends AppCompatActivity  implements GoogleApiClient.
                 .build();
 
         return messageToIndex;
+    }
+
+    private Action getMessageViewAction(FriendlyMessage friendlyMessage) {
+        return new Action.Builder(Action.Builder.VIEW_ACTION)
+                .setObject(friendlyMessage.getName(), MESSAGE_URL.concat(friendlyMessage.getId()))
+                .setMetadata(new Action.Metadata.Builder().setUpload(false))
+                .build();
     }
 }
