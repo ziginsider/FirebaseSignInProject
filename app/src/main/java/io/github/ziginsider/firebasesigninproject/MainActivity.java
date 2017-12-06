@@ -345,7 +345,7 @@ public class MainActivity extends AppCompatActivity  implements GoogleApiClient.
                     Log.d(TAG, "Uri: " + uri.toString());
 
                     FriendlyMessage tempMessage = new FriendlyMessage(null, mUsername, mPhotoUrl,
-                            uri.toString()/*LOADING_IMAGE_URL*/);
+                            LOADING_IMAGE_URL);
                     mFirebaseDatabaseReference.child(MESSAGES_CHILD).push()
                             .setValue(tempMessage, new DatabaseReference.CompletionListener() {
                                 @Override
