@@ -20,19 +20,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
-                    android:host="friendlychat.firebase.google.com"
                     android:scheme="http"
-                    android:pathPrefix="/message"
-                    />
+                    android:host="firebasesigninproject.firebase.google.com"
+                    android:pathPattern="/message" />
             </intent-filter>
+
         </activity>
         <activity android:name=".SignInActivity"></activity>
 
-       
+
     </application>
 
 </manifest>
