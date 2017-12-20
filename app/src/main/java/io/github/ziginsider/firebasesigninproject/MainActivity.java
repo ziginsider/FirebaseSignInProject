@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity  implements GoogleApiClient.
     private String mPhotoUrl;
     private SharedPreferences mSharedPreferences;
     private GoogleApiClient mGoogleApiClient;
-    private static final String MESSAGE_URL = "http://friendlychat.firebase.google.com/message/";
+    private static final String MESSAGE_URL = "https://fir-signinproject-d8d84.firebaseapp.com/message/";
 
     private Button mSendButton;
     private RecyclerView mMessageRecyclerView;
@@ -104,6 +104,7 @@ public class MainActivity extends AppCompatActivity  implements GoogleApiClient.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
