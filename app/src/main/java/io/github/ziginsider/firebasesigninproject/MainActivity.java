@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity  implements GoogleApiClient.
 
         public MessageViewHolder(View v) {
             super(v);
+
             messageTextView = (TextView) itemView.findViewById(R.id.messageTextView);
             messageImageView = (ImageView) itemView.findViewById(R.id.messageImageView);
             messengerTextView = (TextView) itemView.findViewById(R.id.messengerTextView);
