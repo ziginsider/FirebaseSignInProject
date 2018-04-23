@@ -177,7 +177,8 @@ public class MainActivity extends AppCompatActivity  implements GoogleApiClient.
                 } else {
                     String imageUrl = friendlyMessage.getImageUrl();
                     if (imageUrl.startsWith("gs://")) {
-                        StorageReference storageReference = FirebaseStorage.getInstance()
+                        StorageReference storageReference = FirebaseStorage
+                                .getInstance()
                                 .getReferenceFromUrl(imageUrl);
                         storageReference.getDownloadUrl().addOnCompleteListener(
                                 new OnCompleteListener<Uri>() {
@@ -318,11 +319,6 @@ public class MainActivity extends AppCompatActivity  implements GoogleApiClient.
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-    }
-
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_menu, menu);
@@ -342,6 +338,11 @@ public class MainActivity extends AppCompatActivity  implements GoogleApiClient.
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
 
     @Override
